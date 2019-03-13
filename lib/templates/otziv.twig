@@ -1,0 +1,92 @@
+{% include 'head.html' %}
+<h1 class="title">Отзывы</h1>
+{% if data is empty %}
+    <h3>Хэй, ничего нет!</h3>
+{% else %}
+<div class="container">
+    <table id="table" class="display" style="width:100%;text-align:center">
+        <thead>
+        <tr>
+            <th>Файл</th>
+            <th>Имя</th>
+            <th>Почта</th>
+            <th>Отзыв</th>
+            <th>Дата публикации</th>
+            <th>Просмотров</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for d in data %}
+            <tr>
+                <td>
+                    <a href="/test/?id={{ d.id }}" target="_blank">
+                        <div class="container-img">
+                            <img src="{{ d.katalog }}" class="image" title="{{ d.name_img }}">
+                        </div>
+                    </a>
+                </td>
+                <td>{{ d.name_author }}</td>
+                <td>{{ d.email_author }}</td>
+                <td>{{ d.comment }}</td>
+                <td>{{ d.date }}</td>
+                <td>{{ d.views }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% endif %}
+</div>
+<h2 class="title-2" style="text-align: center">Оставить отзыв</h2>
+<form enctype="multipart/form-data" action="?" method="post" class="validate" onsubmit="return Validate(this);">
+    <label for="name_author">Имя:</label>
+    <input name="name_author" id="name_author" type="text" class="required"/>
+    <label for="email">Почта:</label>
+    <input name="email" id="email" type="email"/>
+    <label for="comment">Отзыв:</label>
+    <textarea name="comment" cols="40" rows="10"></textarea>
+    <label for="myfile">Выберете файл:</label>
+    <input name="{{ name }}" id="myfile" type="file"/>
+    <button type="submit" class="submit">Отправить</button>
+</form>
+{% include 'footer.html' %}
+<script>
+    var _validFileExtensions = [".jpg", ".jpeg", ".gif", ".png"];
+
+    /**
+     * @return {boolean}
+     */
+    function Validate(oForm) {
+        var arrInputs = oForm.getElementsByTagName("input");
+        for (var i = 0; i < arrInputs.length; i++) {
+            var oInput = arrInputs[i];
+            if (oInput.type === "file") {
+                var sFileName = oInput.value;
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() === sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                            break;
+                        }
+                    }
+
+                    if (!blnValid) {
+                        $('input#myfile').after("<div class='error'>Необходим формат изображения: " + _validFileExtensions.join(", ") + "</div>");
+                        $('div.error').nextAll('div.error').remove();
+                        return false;
+                    }
+                }
+                if(oInput.files[0].size > 1000000){
+                    $('input#myfile').after("<div class='error'>Размер изображения не должен превышать 1МБ</div>");
+                    $('div.error').nextAll('div.error').remove();
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+</script>

@@ -9,11 +9,11 @@ require_once 'lib/Twig/Autoloader.php';
 require_once 'class/Db.php';
 require_once 'class/Engine.php';
 
-$templ = 'gallery.tmpl';
+$templ = 'otziv.twig';
 
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
-    $templ = 'foto.tmpl';
+    $templ = 'info.twig';
 } elseif (!empty($_GET['error'])) {
     $templ = 'error404.html';
 } else {

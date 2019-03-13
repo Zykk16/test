@@ -1,7 +1,7 @@
 <?php
 
 /*
-* Главный класс для обработки фотографий.
+* Главный класс для обработки фото и вывод информации.
 */
 
 class Engine extends Db
@@ -49,18 +49,20 @@ class Engine extends Db
         $this->picture = $picture;
         $this->path = $path;
 
-        $types = array('image/gif', 'image/png', 'image/jpeg', 'image/jpg');
+//        $types = array('image/gif', 'image/png', 'image/jpeg', 'image/jpg');
         $size = 102400000;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Проверяем тип файла
-            if (!in_array($_FILES[$this->picture]['type'], $types)) {
-                die('Запрещённый тип файла. <a href="?">Попробовать другой файл?</a>');
-            }
+
+//            // Проверяем тип файла
+//            if (!in_array($_FILES[$this->picture]['type'], $types)) {
+//                die('Запрещённый тип файла. <a href="?">Попробовать другой файл?</a>');
+//            }
 
             // Проверяем размер файла
-            if ($_FILES[$this->picture]['size'] > $size) {
-                die('Слишком большой размер файла. <a href="?">Попробовать другой файл?</a>');
-            }
+//            if ($_FILES[$this->picture]['size'] > $size) {
+//                die('Слишком большой размер файла. <a href="?">Попробовать другой файл?</a>');
+//            }
+
             //Вернемся на текущую страницу после отправки
             function getUrl()
             {

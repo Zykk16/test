@@ -1,0 +1,20 @@
+{% include 'head.html' %}
+{% for i in info %}
+    <div class="flex">
+        <div class="container-image">
+            <img src="{{ i.katalog }}" class="image-view" title="{{ i.name_img }}">
+        </div>
+        <div class="info">
+            <ul>
+                <li>Имя: {{ i.name_author }}</li>
+                <li>Почта: {{ i.email_author }}</li>
+                <li>Отзыв: {{ i.comment }}</li>
+                <li>Дата отправления: {{ i.date }}</li>
+                <li>Просмотров страницы: {{ i.views }}</li>
+            </ul>
+        </div>
+        <a href="https:\\site.ru" target="_blank"><button class="url-check">Какая-то ссылка</button></a>
+    </div>
+
+{% endfor %}
+{% include 'footer.html' %}
