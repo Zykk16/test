@@ -1,0 +1,5 @@
+{% include 'head.html' %}
+{% for f in foto %}
+<img src="{{ f.katalog }}" class="image" title="{{f.name_img}}">
+{% endfor %}
+{% include 'footer.html' %}

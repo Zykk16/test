@@ -1,0 +1,60 @@
+{% include 'head.html' %}
+<h1>Отзывы</h1>
+<form enctype="multipart/form-data" action="?" method="post" class="validate">
+  <br>
+  <label for="name_author">Имя:</label>
+  <br>
+  <input name="name_author" id="name_author" type="text" class="required" />
+  <br>
+  <label for="email">Почта:</label>
+  <br>
+  <input name="email" id="email" type="email" />
+  <br>
+  <label for="comment">Отзыв:</label>
+  <br>
+  <textarea name="comment" cols="40" rows="3"></textarea>
+  <br>
+  <label for="myfile">Выберете файл:</label>
+  <br>
+  <input name="{{ name }}" id="myfile" type="file" />
+  <br>
+  <input type="submit" value="Загрузить" />
+  <br>
+</form>
+{% if data is empty %}
+<h3>Хэй, фотографий нет!</h3>
+{% else %}
+<div class="container">
+<table id="table" class="display" style="width:100%;text-align:center">
+        <thead>
+            <tr>
+                <th>Файл</th>
+                <th>Имя</th>
+                <th>Почта</th>
+                <th>Отзыв</th>
+                <th>Дата публикации</th>
+                <th>Просмотров</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for d in data %}
+            <tr>
+                <td>
+                <a href="/test/?id={{ d.id }}" target="_blank" >
+                  <img src="{{ d.katalog }}" class="image" title="{{d.name_img}}">
+                </a>
+                </td>
+                <td>{{d.name_author}}</td>
+                <td>{{d.email_author}}</td>
+                <td>{{d.comment}}</td>
+                <td>{{d.date}}</td>
+                <td>{{d.views}}</td>
+            </tr>
+              {% endfor %}
+        </tbody>
+    </table>
+
+
+  {% endif %}
+</div>
+{% include 'footer.html' %}

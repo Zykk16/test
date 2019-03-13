@@ -1,0 +1,10 @@
+<div class="smallGalery">
+    {% for foto in galery %}
+        <div>    
+            <a href="/?id={{ foto.id_galery }}" target="_blank" >
+            <img src="{{UPLOAD_SMALL_DIR}}{{foto.hash_file}}" /></a>
+            <br>
+            <p>Количество просмотров: {{ foto.view }}</p>
+        </div>
+    {% endfor %}
+</div>
