@@ -22,7 +22,7 @@ if (!empty($_GET['id'])) {
 
 Engine::getInstance()->connection('pictures', 'data');
 $data = Engine::getInstance()->views();
-$foto = Engine::getInstance()->foto($id);
+$info = Engine::getInstance()->info($id);
 
 // подгружаем и активируем автозагрузчик Twig-а
 Twig_Autoloader::register();
@@ -33,7 +33,7 @@ try {
     //рендерим въюхи и передаём данные
     echo $template->render(array(
         'data' => $data,
-        'foto' => $foto,
+        'info' => $info,
         'name' => 'pictures',
     ));
 

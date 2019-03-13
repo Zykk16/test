@@ -1,5 +1,18 @@
 {% include 'head.html' %}
-{% for f in foto %}
-<img src="{{ f.katalog }}" class="image" title="{{f.name_img}}">
+{% for i in info %}
+<div class="flex">
+<img src="{{ i.katalog }}" class="image-view" title="{{i.name_img}}">
+<div class="info">
+<ul>
+<li>Имя: {{i.name_author}}</li>
+<li>Почта: {{i.email_author}}</li>
+<li>Отзыв: {{i.comment}}</li>
+<li>Дата отправления: {{i.date}}</li>
+<li>Просмотров страницы: {{i.views}}</li>
+</ul>
+<a href="https:\\site.ru" target="_blank">Какая-то ссылка</a>
+</div>
+</div>
+
 {% endfor %}
 {% include 'footer.html' %}

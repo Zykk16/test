@@ -28,7 +28,7 @@ class Engine extends Db
         return $data;
     }
 
-    public function foto($id = null)
+    public function info($id = null)
     {
         $sql = "SELECT * FROM contact WHERE id = '$id';";
         $foto = parent::getAssocResult($sql);
